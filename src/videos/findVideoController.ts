@@ -5,7 +5,7 @@ export const findVideoController = (req: Request, res: Response<any>) => {
     const videos = db.videos
     const video = videos.find(video => video.id === req.params.id)
     if (!video) {
-        res.status(404)
+        res.sendStatus(404)
         return
     }
     videos.filter(video => video.id !== req.params.id)
