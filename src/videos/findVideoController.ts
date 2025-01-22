@@ -1,13 +1,14 @@
 import {Request, Response} from 'express'
 import {db} from '../db/db'
+import {videosRepository} from "../videos-repository/videosRepository";
 
 export const findVideoController = (req: Request, res: Response<any>) => {
-    const videos = db.videos
-    const video = videos.find(video => video.id === req.params.id)
-    if (!video) {
+
+    const foundedVideovideo =videosRepository.findVideo(req.params.id ? req.params.id : '')
+
+    if(foundedVideovideo === false){
         res.sendStatus(404)
         return
     }
-    videos.filter(video => video.id !== req.params.id)
-    res.status(200).json(videos)
+    res.status(200).json(foundedVideovideo)
 }

@@ -1,15 +1,15 @@
 import {Request, Response} from 'express'
 import {db} from '../db/db'
+import {videosRepository} from "../videos-repository/videosRepository";
 
 export const deleteVideoController = (req: Request, res: Response<any>) => {
-    const videos = db.videos
-    const index = videos.findIndex(video => video.id === Number(req.params.id))
 
-    if (index !== -1) {
-        videos.splice(index, 1)
-        res.sendStatus(204)
+    const isDeleted = videosRepository.deleteVideo(req.params.id)
+
+    if (!isDeleted) {
+        res.sendStatus(404)
         return
     } else {
-        res.sendStatus(404)
+        res.sendStatus(204)
     }
 }

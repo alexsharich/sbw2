@@ -1,8 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import {SETTINGS} from './settings'
-import {videosRouter} from './videos'
 import bodyParser from 'body-parser'
+import {videosRouter} from "./routes/videos-router";
 
 export const app = express()
 app.use(bodyParser())

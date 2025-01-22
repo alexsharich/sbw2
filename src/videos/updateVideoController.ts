@@ -1,20 +1,26 @@
 import {Request, Response} from 'express'
 import {db} from '../db/db'
+import {videosRepository} from "../videos-repository/videosRepository";
+import {Resolutions} from "../input-output-types/video-types";
 
+export type videoType = {
+    title: string,
+    author: string,
+    availableResolutions: [
+        Resolutions
+    ],
+    canBeDownloaded: boolean,
+    minAgeRestriction: number,
+    publicationDate: Date
+}
 export const updateVideoController = (req: Request, res: Response<any>) => {
-    const videos = db.videos
-    const video = videos.find(video => video.id === Number(req.params.id))
-    if (!video) {
 
+    const isUpdatedVideo = videosRepository.updateVideo(req.params.id, req.body)
+
+    if (!isUpdatedVideo) {
         res.sendStatus(404)
         return
     }
-    video.title = req.body.title
-    video.athor = req.body.author
-    video.availableResolutions = req.body.availableResolutions
-    video.canBeDownloaded = req.body.canBeDownloaded
-    video.minAgeRestriction = req.body.minAgeRestriction
-    video.publicationDate = req.body.minAgeRestriction
     res.sendStatus(204)
 }
 

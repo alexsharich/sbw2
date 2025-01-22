@@ -1,22 +1,10 @@
 import {Request, Response} from 'express'
-import {db} from '../db/db'
+import {videosRepository} from "../videos-repository/videosRepository";
+import {OutputVideoType} from "../input-output-types/video-types";
 
 export const createVideoController = (req: Request, res: Response<any>) => {
-    const videos = db.videos
 
-    if (req.body.title === '') {
-        res.status(400).json({
-            errorsMessages: [
-                {
-                    message: "string",
-                    field: "string"
-                }
-            ]
-        })
-    }
-
-
-    const newVideo = {
+    const newVideo:any = {
         id: new Date().getTime() + 1000,
         title: req.body.title,
         author: req.body.author,
@@ -26,6 +14,19 @@ export const createVideoController = (req: Request, res: Response<any>) => {
         publicationDate: new Date().getDate(),
         availableResolutions: req.body.availableResolutions
     }
-     videos.push(newVideo)
+
+    const isCreatedVideo = videosRepository.createVideo(newVideo)
+
+    if (!isCreatedVideo) {
+        res.status(400).json({
+            errorsMessages: [
+                {
+                    message: "string",
+                    field: "string"
+                }
+            ]
+        })
+        return
+    }
     res.status(201).json(newVideo)
 }
