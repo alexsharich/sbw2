@@ -1,5 +1,4 @@
 import {Request, Response} from 'express'
-import {db} from '../db/db'
 import {videosRepository} from "../videos-repository/videosRepository";
 import {Resolutions} from "../input-output-types/video-types";
 
