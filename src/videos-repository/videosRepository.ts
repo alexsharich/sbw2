@@ -6,7 +6,7 @@ export const videosRepository = {
         const videos = db.videos
         return videos
     },
-    createVideo(newVideo:any) {
+    createVideo(newVideo: any) {
         const videos = db.videos
         if (newVideo.title === '') {
             return false

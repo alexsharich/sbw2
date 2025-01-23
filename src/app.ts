@@ -3,6 +3,8 @@ import cors from 'cors'
 import {SETTINGS} from './settings'
 import bodyParser from 'body-parser'
 import {videosRouter} from "./routes/videos-router";
+import {blogsRouter} from "./routes/blogs-repository";
+import {postsRouter} from "./routes/posts-repository";
 
 export const app = express()
 app.use(bodyParser())
@@ -13,3 +15,5 @@ app.get('/', (req, res) => {
     res.status(200).json({version: '1.0'})
 })
 app.use(SETTINGS.PATH.VIDEOS, videosRouter)
+app.use(SETTINGS.PATH.BLOGS, blogsRouter)
+app.use(SETTINGS.PATH.POSTS, postsRouter)
