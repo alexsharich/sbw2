@@ -1,10 +1,9 @@
 import {Request, Response} from 'express'
 import {videosRepository} from "../videos-repository/videosRepository";
-import {OutputVideoType} from "../input-output-types/video-types";
 
 export const createVideoController = (req: Request, res: Response<any>) => {
 
-    const newVideo:any = {
+    const newVideo: any = {
         id: new Date().getTime() + 1000,
         title: req.body.title,
         author: req.body.author,

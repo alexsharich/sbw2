@@ -1,3 +1,1 @@
-export const blogsRepository = {
-
-}
+export const blogsRepository = {}

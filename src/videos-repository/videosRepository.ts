@@ -14,8 +14,6 @@ export const videosRepository = {
             videos.push(newVideo)
             return true
         }
-
-
     },
     findVideo(id: string) {
         const videos = db.videos
@@ -45,7 +43,6 @@ export const videosRepository = {
 
         if (index !== -1) {
             videos.splice(index, 1)
-
             return true
         } else {
             return false
