@@ -1,5 +1,5 @@
-import {db} from "../db/db";
-import {videoType} from "../videos/updateVideoController";
+import {db} from "../../db/db";
+import {videoType} from "../updateVideoController";
 
 export const videosRepository = {
     getVideos() {

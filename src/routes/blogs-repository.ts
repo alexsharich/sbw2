@@ -1,13 +1,9 @@
 import {Router} from "express";
-import {getBlogsController} from "../blogs/getBlogsController";
-import {createBlogController} from "../blogs/createBlogController";
-import {getBlogsByIdController} from "../blogs/getBlogsByIdController";
-import {updateBlogController} from "../blogs/updateBlogController";
-import {deleteBlogController} from "../blogs/deleteBlogController";
+import {blogsController} from "../features/blogs/controllers/blogsController";
 
 export const blogsRouter = Router()
-blogsRouter.get('/', getBlogsController)
-blogsRouter.post('/', createBlogController)
-blogsRouter.get('/:id', getBlogsByIdController)
-blogsRouter.put('/:id', updateBlogController)
-blogsRouter.delete('/:id', deleteBlogController)
+blogsRouter.get('/', blogsController.getBlogs)
+blogsRouter.post('/', blogsController.createBlog)
+blogsRouter.get('/:id', blogsController.getBlogById)
+blogsRouter.put('/:id', blogsController.updateBlog)
+blogsRouter.delete('/:id', blogsController.deleteBlog)

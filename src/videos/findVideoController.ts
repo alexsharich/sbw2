@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-import {videosRepository} from "../videos-repository/videosRepository";
+import {videosRepository} from "./videos-repository/videosRepository";
 
 export const findVideoController = (req: Request, res: Response<any>) => {
 

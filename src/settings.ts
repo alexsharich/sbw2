@@ -7,6 +7,7 @@ export const SETTINGS = {
     PATH: {
         VIDEOS: '/videos',
         BLOGS: '/blogs',
-        POSTS: '/posts'
+        POSTS: '/posts',
+        TESTING: '/testing'
     },
 }

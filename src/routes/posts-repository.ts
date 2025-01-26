@@ -1,13 +1,9 @@
+import {postsController} from "../features/posts/controllers/postsController";
 import {Router} from "express";
-import {getPostsController} from "../posts/getPostsController";
-import {createPostController} from "../posts/createPostController";
-import {getPostByIdController} from "../posts/getPostByIdController";
-import {updatePostControlller} from "../posts/updatePostControlller";
-import {deletePostController} from "../posts/deletePostController";
 
 export const postsRouter = Router()
-postsRouter.get('/', getPostsController)
-postsRouter.post('/', createPostController)
-postsRouter.get('/:id', getPostByIdController)
-postsRouter.put('/:id', updatePostControlller)
-postsRouter.delete('/:id', deletePostController)
+postsRouter.get('/', postsController.getPosts)
+postsRouter.post('/', postsController.createPost)
+postsRouter.get('/:id', postsController.getPostById)
+postsRouter.put('/:id', postsController.updatePost)
+postsRouter.delete('/:id', postsController.deletePost)
