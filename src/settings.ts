@@ -10,4 +10,5 @@ export const SETTINGS = {
         POSTS: '/posts',
         TESTING: '/testing'
     },
+    ADMIN_AUTH : 'admin:qwerty'
 }
