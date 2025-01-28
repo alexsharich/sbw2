@@ -40,7 +40,6 @@ export const postsController = {
             res.sendStatus(404)
             return
         }
-        res.status(204).send(isPostUpdated) //// ?????
-
+        res.sendStatus(204)
     }
 }
