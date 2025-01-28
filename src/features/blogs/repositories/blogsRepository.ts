@@ -1,1 +1,17 @@
-export const blogsRepository = {}
+export const blogsRepository = {
+    createBlog() {
+
+    },
+    deleteBlog() {
+
+    },
+    findBlog() {
+
+    },
+    updateBlog() {
+
+    },
+    getBlogs() {
+
+    }
+}
