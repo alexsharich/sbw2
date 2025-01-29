@@ -24,7 +24,7 @@ export const blogsController = {
         res.status(200).send(foundedBlog)
     },
     getBlogs(req: any, res: any) {
-        const blogs = blogsRepository.getBlogs(req.params)
+        const blogs = blogsRepository.getBlogs()
         if (!blogs) {
             res.sendStatus(404)
             return
