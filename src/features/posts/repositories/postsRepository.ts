@@ -1,20 +1,8 @@
 import {db} from "../../../db/db";
+import {InputPostType} from "../../../input-output-types/post-types";
 
-
-type ForUpdatePostBody = {
-    title: string,
-    shortDescription: string,
-    content: string,
-    blogId: string
-}
-type ForCreatePostBody = {
-    title: string,
-    shortDescription: string,
-    content: string,
-    blogId: string
-}
 export const postsRepository = {
-    createPost({blogId, content, shortDescription, title}: ForCreatePostBody) {
+    createPost({blogId, content, shortDescription, title}: InputPostType) {
         const posts = db.posts
         const newPost = {
             id: new Date().getDate(),
@@ -41,7 +29,7 @@ export const postsRepository = {
             return false
         }
     },
-    updatePost(id: string, {title, shortDescription, blogId, content}: ForUpdatePostBody) {
+    updatePost(id: string, {title, shortDescription, blogId, content}: InputPostType) {
         const posts = db.posts
         const postForUpdate = posts.find(post => post.id === id)
         if (!postForUpdate) {
