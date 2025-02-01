@@ -1,7 +1,9 @@
 import {postsRepository} from "../repositories/postsRepository";
+import {Request, Response} from "express";
+import {InputPostType} from "../../../input-output-types/post-types";
 
 export const postsController = {
-    createPost(req: any, res: any) {
+    createPost(req: Request<{}, {}, InputPostType>, res: Response) {
         const newPostCreated = postsRepository.createPost(req.body)
         if (newPostCreated === null) {
             res.sendStatus(400)
@@ -14,7 +16,7 @@ export const postsController = {
         }
         res.status(201).send(newPost)
     },
-    deletePost(req: any, res: any) {
+    deletePost(req: Request<{ id: string }>, res: Response) {
         const isDeletedPost = postsRepository.deletePost(req.params.id)
         if (!isDeletedPost) {
             res.sendStatus(404)
@@ -22,7 +24,7 @@ export const postsController = {
         }
         res.sendStatus(204)
     },
-    getPostById(req: any, res: any) {
+    getPostById(req: Request<{ id: string }>, res: Response) {
         const foundedPost = postsRepository.findPost(req.params.id)
         if (!foundedPost) {
             res.sendStatus(404)
@@ -30,12 +32,12 @@ export const postsController = {
         }
         res.status(200).send(foundedPost)
     },
-    getPosts(req: any, res: any) {
+    getPosts(req: Request, res: Response) {
         const posts = postsRepository.getPosts()
         res.status(200).send(posts)
     },
-    updatePost(req: any, res: any) {
-        const isPostUpdated = postsRepository.updatePost(req.params, req.body)
+    updatePost(req: Request<{ id: string }, {}, InputPostType>, res: any) {
+        const isPostUpdated = postsRepository.updatePost(req.params.id, req.body)
         if (!isPostUpdated) {
             res.sendStatus(404)
             return

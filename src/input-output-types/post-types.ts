@@ -9,14 +9,14 @@ export type OutputPostType = {
 }
 
 export type InputPostType = {
-    title: string,
-    shortDescription: string,
-    content: string,
-    blogId: string
+    title: string // max 30
+    shortDescription: string // max 100
+    content: string // max 1000
+    blogId: string // valid
 }
 
 export type InputPostForBlogType = {
-    title: string,
-    shortDescription: string,
-    content: string,
+    title: string // max 30
+    shortDescription: string // max 100
+    content: string // max 1000
 }

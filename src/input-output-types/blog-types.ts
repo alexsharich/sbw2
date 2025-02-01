@@ -1,14 +1,14 @@
 export type OutputBlogType = {
     id: string,
-    name: string,
-    description: string,
-    websiteUrl: string,
-    createdAt:string,
-    isMembership:boolean
+    name: string, // max 15
+    description: string, // max 500
+    websiteUrl: string, // max 100 ^https://([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]+(\/[a-zA-Z0-9_-]+)*\/?$
+    /* createdAt:string,
+     isMembership:boolean*/
 }
 
 export type InputBlogType = {
-    name: string,
-    description: string,
-    websiteUrl: string
+    name: string, // max 15
+    description: string, // max 500
+    websiteUrl: string // max 100 ^https://([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]+(\/[a-zA-Z0-9_-]+)*\/?$
 }
