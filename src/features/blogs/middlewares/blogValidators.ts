@@ -25,7 +25,7 @@ export const findBlogValidator = async (req: Request<{ id: string }>, res: Respo
     next()
 }
 
-export const blogValidators = {
+export const blogValidators = [
     adminMiddleware,
 
     nameValidator,
@@ -33,4 +33,4 @@ export const blogValidators = {
     websiteUrlValidator,
 
     inputCheckErrorsMiddleware
-}
+]
