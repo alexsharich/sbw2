@@ -3,9 +3,9 @@ import cors from 'cors'
 import {SETTINGS} from './settings'
 import bodyParser from 'body-parser'
 import {videosRouter} from "./routes/videos-router";
-import {blogsRouter} from "./routes/blogs-repository";
-import {postsRouter} from "./routes/posts-repository";
 import {testingRouter} from "./features/testing/testing";
+import {blogsRouter} from "./routes/blogs-router";
+import {postsRouter} from "./routes/posts-router";
 
 export const app = express()
 app.use(bodyParser())
