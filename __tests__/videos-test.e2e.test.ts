@@ -2,7 +2,6 @@ import {req} from './test-helpers'
 import {setDB} from '../src/db/db'
 import {dataset1} from './datasets'
 import {SETTINGS} from '../src/settings'
-import {InputVideoType, Resolutions} from "../src/input-output-types/video-types";
 
 describe('/videos', () => {
     beforeAll(async () => {
