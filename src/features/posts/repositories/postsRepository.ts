@@ -1,25 +1,25 @@
 import {db} from "../../../db/db";
-import {InputPostType} from "../../../input-output-types/post-types";
+import {InputPostType, OutputPostType} from "../../../input-output-types/post-types";
+import {PostDbType} from "../../../db/post-db-type";
+import {blogsRepository} from "../../blogs/repositories/blogsRepository";
 
 export const postsRepository = {
-    createPost({blogId, content, shortDescription, title}: InputPostType) {
-        const posts = db.posts
-        const newPost = {
-            id: new Date().getDate(),
-            title: title,
-            shortDescription: shortDescription,
-            content: content,
-            blogId: "string",///???
-            blogName: "string"///???
+    create(post: InputPostType) {
+        const newPost: PostDbType = {
+            id: new Date().toISOString() + Math.random(),
+            title: post.title,
+            content: post.content,
+            shortDescription: post.shortDescription,
+            blogId: post.blogId,
+            blogName: blogsRepository.find(post.blogId)!.name,
         }
-        posts.push(newPost)
-        return true
+        db.posts = [...db.posts, newPost]
+        return newPost.id
     },
-    getPosts() {
-        const posts = db.posts
-        return posts
+    getAll() {
+        return db.posts.map(p => this.map(p))
     },
-    deletePost(id: string) {
+    delete(id: string) {
         const posts = db.posts
         const index = posts.findIndex(post => post.id === Number(id))
         if (index !== -1) {
@@ -29,7 +29,7 @@ export const postsRepository = {
             return false
         }
     },
-    updatePost(id: string, {title, shortDescription, blogId, content}: InputPostType) {
+    update(id: string, {title, shortDescription, blogId, content}: InputPostType) {
         const posts = db.posts
         const postForUpdate = posts.find(post => post.id === id)
         if (!postForUpdate) {
@@ -41,13 +41,24 @@ export const postsRepository = {
         postForUpdate.blogId = blogId
         return true
     },
-    findPost(id: string) {
+    find(id: string) {
         const posts = db.posts
         const post = posts.find(post => post.id === id)
         if (!post) {
             return false
         }
         return posts.filter(post => post.id === id) ///or !id ???
-    }
+    },
+    map(post: PostDbType) {
+        const postForOutput: OutputPostType = {
+            id: post.id,
+            title: post.title,
+            shortDescription: post.shortDescription,
+            content: post.content,
+            blogId: post.blogId,
+            blogName: post.blogName,
+        }
+        return postForOutput
+    },
 
 }

@@ -20,7 +20,7 @@ export const contentValidator = body('content').isString().withMessage('not stri
 }).withMessage('more then 1000 or 0')
 
 export const findPostValidator = async (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
-    const post = await postsRepository.findPost(req.params.id)
+    const post = await postsRepository.find(req.params.id)
     if (!post) {
         res.status(404).json({})
         return
@@ -29,7 +29,7 @@ export const findPostValidator = async (req: Request<{ id: string }>, res: Respo
 }
 
 export const blogIdValidator = body('blogId').isString().withMessage('not string').trim().custom(async (blogId: string) => {
-    const blog = await blogsRepository.findBlog(blogId)
+    const blog = await blogsRepository.find(blogId)
     if (!blog) {
         throw new Error('blog not found')
         return true

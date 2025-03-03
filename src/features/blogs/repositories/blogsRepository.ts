@@ -1,4 +1,7 @@
 import {db} from "../../../db/db";
+import {BlogDbType} from "../../../db/blog-db-type";
+import {InputBlogType, OutputBlogType} from "../../../input-output-types/blog-types";
+import {InputPostType} from "../../../input-output-types/post-types";
 
 
 type ForCreateBlogBody = {
@@ -12,7 +15,7 @@ type ForUpdateBlogBody = {
     websiteUrl: string
 }
 export const blogsRepository = {
-    createBlog({description, name, websiteUrl}: ForCreateBlogBody) {
+    create({description, name, websiteUrl}: ForCreateBlogBody) {
         const blogs = db.blogs
         const newBlog: any = {
             id: new Date().getDate(),
@@ -25,7 +28,7 @@ export const blogsRepository = {
         blogs.push(newBlog)
         return newBlog.id
     },
-    deleteBlog(id: string) {
+    delete(id: string) {
         const blogs = db.blogs
         const index = blogs.findIndex(blog => blog.id === id)
         if (index !== 1) {
@@ -35,16 +38,10 @@ export const blogsRepository = {
             return false
         }
     },
-    findBlog(id: string) {
-        const blogs = db.blogs
-        const blog = blogs.find(blog => blog.id === id)
-        if (!blog) {
-            return false
-        }
-        return blogs.filter(blog => blog.id === id)
-
+    find(id: string) {
+        return db.blogs.find(b => b.id === id)
     },
-    updateBlog(id: string, {description, name, websiteUrl}: ForUpdateBlogBody) {
+    update(id: string, {description, name, websiteUrl}: ForUpdateBlogBody) {
         const blogs = db.blogs
         const blogForUpdate = blogs.find(blog => blog.id === id)
         if (!blogForUpdate) {
@@ -56,8 +53,16 @@ export const blogsRepository = {
         return true
 
     },
-    getBlogs() {
-        const blogs = db.blogs
-        return blogs
-    }
+    getAll() {
+        return db.blogs.map(b => this.map(b))
+    },
+    map(blog: BlogDbType) {
+        const blogForOutput: OutputBlogType = {
+            id: blog.id,
+            description: blog.description,
+            websiteUrl: blog.websiteUrl,
+            name: blog.name,
+        }
+        return blogForOutput
+    },
 }

@@ -17,7 +17,7 @@ export const websiteUrlValidator = body('websiteUrl').isString().withMessage('no
     max: 100
 }).withMessage('more 100 or 0')
 export const findBlogValidator = async (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
-    const blog = await blogsRepository.findBlog(req.params.id)
+    const blog = await blogsRepository.find(req.params.id)
     if (!blog) {
         res.status(404).json({})
         return
