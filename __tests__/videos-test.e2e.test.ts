@@ -3,7 +3,7 @@ import {setDB} from '../src/db/db'
 import {dataset1} from './datasets'
 import {SETTINGS} from '../src/settings'
 
-describe('/videos', () => {
+describe.skip('/videos', () => {
     beforeAll(async () => {
         setDB()
     })

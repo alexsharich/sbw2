@@ -1,4 +1,4 @@
-import {codedAuth, createString, dataset1, dataset2} from "../helpers/helpers";
+import {codedAuth, createString, dataset1, dataset2} from "./helpers/helpers";
 import {agent} from 'supertest'
 import {SETTINGS} from "../src/settings";
 import {app} from "../src/app";
